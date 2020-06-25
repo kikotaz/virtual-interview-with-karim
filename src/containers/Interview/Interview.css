@@ -1,0 +1,27 @@
+.Interview .nav-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.Interview .nav-list li{
+    display: inline-block;
+    margin: 20px;
+}
+
+.Interview .nav-list a{
+    text-decoration: none;
+    color: #123C69;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
+
+.Interview .nav-list a:hover{
+    color: #AC3B61;
+}
+
+.Interview .nav-list a:active{
+    color: #AC3B61;
+}
