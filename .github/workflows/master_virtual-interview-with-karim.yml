@@ -31,4 +31,4 @@ jobs:
         app-name: 'virtual-interview-with-karim'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_f5778f4133dd460bb1bdd84383495788 }}
-        package: .
+        publish_dir: ./build
