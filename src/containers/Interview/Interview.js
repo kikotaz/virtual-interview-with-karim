@@ -1,42 +1,52 @@
-import React, { Component } from 'react';
-import { Route, NavLink, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import './Interview.css';
 import Welcome from './Welcome/Welcome';
-import Intro from './Intro/Intro'
+import AboutMe from './AboutMe/AboutMe';
+import CustomTabs from '../../components/CustomTabs';
+import CustomTab from '../../components/CustomTab';
 
 //This component will mainly contain navigation and routes
-class Interview extends Component {
-    render() {
-        return (
-            //Website header with navigation links       
-            <div className='Interview'>
-                <header>
-                    <nav>
-                        <ul className='nav-list'>
-                            <li><NavLink to='/'>Welcome</NavLink></li>
-                            <li><NavLink to='/intro'>Introduction</NavLink></li>
-                        </ul>
-                    </nav>
-                </header>
-                {/*Configuring Switch to rerender exact page requested*/}
-                <Switch>
-                    <Route path='/intro'>
-                        <Intro />
-                    </Route>
-                    <Route path='/'>
-                        <Welcome />
-                    </Route>
-                </Switch>
-            </div>
-        );
+function Interview(props) {
+
+    //Creating object of pages
+    const navigation = {
+        pages: [
+            {path: '/', label: 'Welcome',},
+            {path: '/about-me', label: 'About Me'},
+        ],
     }
+
+    //Handler for Navigation tab changed
+    const selectionHandler = (event, value) => {
+        props.history.push(value);
+    }
+
+    return (
+        //Website Navigation Tabs       
+        <div className='Interview'>
+            <CustomTabs
+                value={props.history.location.pathname || '/'}
+                onChange={selectionHandler}
+                centered
+            >
+                {navigation.pages.map((page) => {
+                    return(
+                        <CustomTab value={page.path} label={page.label} key={page.path}/>
+                    )
+                })}
+            </CustomTabs>
+            {/*Configuring Switch to rerender exact page requested*/}
+            <Switch>
+                <Route path='/about-me'>
+                    <AboutMe />
+                </Route>
+                <Route path='/'>
+                    <Welcome />
+                </Route>
+            </Switch>
+        </div>
+    );
 }
 
-const mapStateToProps = (state) =>{
-    return{
-        pages: state.pages,
-    };
-}
-
-export default connect(mapStateToProps)(Interview);
+export default withRouter(Interview);

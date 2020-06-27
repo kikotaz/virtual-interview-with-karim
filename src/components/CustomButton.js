@@ -1,4 +1,4 @@
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 //Customization for Material UI Button component
