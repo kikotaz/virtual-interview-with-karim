@@ -57,50 +57,54 @@ function Welcome(props) {
 
     return (
         <div className='Welcome'>
-            <h3 style={{ marginBottom: "2em" }}>
-                Woohooo, I am Karim and you have just reached my personal website.
-            </h3>
-            <h4 style={{ marginBottom: "2em" }}>
-                For your convenience, you can choose a background color from the panel below
-            </h4>
+            <Grid container justify='center'>
+                <Grid item xs={9}>
+                    <h3 style={{ marginBottom: "2em" }}>
+                        Woohooo, I am Karim and you have just reached my personal website.
+                    </h3>
+                    <h4 style={{ marginBottom: "2em" }}>
+                        For your convenience, you can choose a background color from the panel below
+                    </h4>
 
-            {/*The color changing grid UI*/}
-            <Grid classes={gridStyles} container spacing={4} wrap={'nowrap'}>
-                {colors.map((color) => {
-                    return (
-                        <Grid item key={color}>
-                            <CustomCard
-                                cardColor={color}
-                                click={() => changeColorHandler(color)} />
-                        </Grid>
-                    )
-                })}
-            </Grid>
+                    {/*The color changing grid UI*/}
+                    <Grid classes={gridStyles} container spacing={2} justify='center' wrap={'nowrap'}>
+                        {colors.map((color) => {
+                            return (
+                                <Grid item key={color}>
+                                    <CustomCard
+                                        cardColor={color}
+                                        click={() => changeColorHandler(color)} />
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
 
-            <h4>
-                It would be great also if you told me your name :-)
-            </h4>
+                    <h4>
+                        It would be great also if you told me your name :-)
+                    </h4>
 
-            <form
-                noValidate
-                autoComplete="off"
-                style={{ marginBottom: '3em' }}
-                onSubmit={submitHandler}>
-                <PrivacyTooltip>
-                    <TextField
-                        id="nameField"
-                        label="Your Name"
+                    <form
+                        noValidate
+                        autoComplete="off"
+                        style={{ marginBottom: '3em' }}
+                        onSubmit={submitHandler}>
+                        <PrivacyTooltip>
+                            <TextField
+                                id="nameField"
+                                label="Your Name"
+                                variant="outlined"
+                                inputProps={{ style: { fontSize: '20px' } }}
+                                value={initUserName}
+                                onChange={event => updateUserName(event.target.value)} />
+                        </PrivacyTooltip>
+                    </form>
+                    <CustomButton
+                        type="submit"
                         variant="outlined"
-                        inputProps={{ style: { fontSize: '20px' } }}
-                        value={initUserName}
-                        onChange={event => updateUserName(event.target.value)} />
-                </PrivacyTooltip>
-            </form>
-            <CustomButton
-                type="submit"
-                variant="outlined"
-                size="small"
-                onClick={continueClickHandler}>Continue</CustomButton>
+                        size="small"
+                        onClick={continueClickHandler}>Continue</CustomButton>
+                </Grid>
+            </Grid>
         </div>
     )
 }

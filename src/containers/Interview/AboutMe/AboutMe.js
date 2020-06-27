@@ -9,7 +9,7 @@ function AboutMe(props) {
     return (
         <div className='about-me'>
             <Grid container justify="center">
-                <Grid item xs={8}>
+                <Grid item xs={9}>
                     <h2>Hi {props.userName}</h2>
                     <p>As I mentioned in the Welcome page my name is Karim Saleh.
                     I am a graduate Software Engineer, who is looking for the right
