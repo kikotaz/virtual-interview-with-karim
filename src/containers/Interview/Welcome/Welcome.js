@@ -26,7 +26,7 @@ function Welcome(props) {
     //Calling useGridStyles hook in top level
     const gridStyles = useGridStyles();
     //Adding username to state using React useState Hook
-    const [initUserName, updateUserName] = useState(props.userName)
+    const [userName, updateUserName] = useState(props.userName)
 
     const history = useHistory();
 
@@ -42,7 +42,7 @@ function Welcome(props) {
     const continueClickHandler = () => {
         props.dispatch({
             type: 'UPD_USERNAME',
-            userName: initUserName,
+            userName: userName,
         })
         history.push('/about-me');
     }
@@ -58,7 +58,7 @@ function Welcome(props) {
     return (
         <div className='Welcome'>
             <Grid container justify='center'>
-                <Grid item xs={9}>
+                <Grid item xs={6}>
                     <h3 style={{ marginBottom: "2em" }}>
                         Woohooo, I am Karim and you have just reached my personal website.
                     </h3>
@@ -94,7 +94,7 @@ function Welcome(props) {
                                 label="Your Name"
                                 variant="outlined"
                                 inputProps={{ style: { fontSize: '20px' } }}
-                                value={initUserName}
+                                value={userName}
                                 onChange={event => updateUserName(event.target.value)} />
                         </PrivacyTooltip>
                     </form>

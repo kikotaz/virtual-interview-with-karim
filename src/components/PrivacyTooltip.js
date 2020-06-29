@@ -23,7 +23,7 @@ function PrivacyTooltip(props) {
             "your privacy is safe :-)"}
             interactive disableFocusListener classes={tooltipStyles}>
                 {props.children}
-            </Tooltip>
+        </Tooltip>
     )
 }
 

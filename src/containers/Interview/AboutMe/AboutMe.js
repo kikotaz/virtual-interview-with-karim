@@ -1,15 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import './AboutMe.css'
-import { Grid, TextField } from '@material-ui/core';
-import PrivacyTooltip from '../../../components/PrivacyTooltip';
+import './AboutMe.css';
+import EventsPanel from '../../../components/EventsPanel';
+import { Grid } from '@material-ui/core';
+import DateFnsUtils from '@date-io/date-fns';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import axios from 'axios';
+import { isValid, getDate, getMonth, isToday } from 'date-fns';
 
 function AboutMe(props) {
+
     document.title = 'A little bit about me';
+
+    //Adding birthday and results to Component state
+    const [birthday, setBirthday] = useState(new Date());
+    const [results, setResults] = useState({ status: 0 });
+    const url = 'https://byabbe.se/on-this-day/'
+
+    //Using effect to process birthday and fetch day's events
+    useEffect(() => {
+        setTimeout(() => {
+            if (isValid(birthday) && !isToday(birthday)) {
+                const [day, month] = [
+                    getDate(birthday),
+                    getMonth(birthday) + 1,
+                ]
+
+                const fetchData = async () => {
+                    const response = await axios.get(url + month + '/' + day + '/events.json');
+                    setResults(response);
+                }
+                fetchData();
+            }
+        }, 2000)
+    }, [birthday])
+
     return (
         <div className='about-me'>
             <Grid container justify="center">
-                <Grid item xs={9}>
+                <Grid item xs={6}>
                     <h2>Hi {props.userName}</h2>
                     <p>As I mentioned in the Welcome page my name is Karim Saleh.
                     I am a graduate Software Engineer, who is looking for the right
@@ -46,23 +75,35 @@ function AboutMe(props) {
                             I was born 06 October
                         </li>
                     </ul>
-                    <h3>
-                        Why don&#39;t you share your birthday with me and I will show you
-                        something cool!
-                    </h3>
-                    <form noValidate style={{ marginBottom: '100px' }}>
+                    <form noValidate style={{ marginBottom: '10px' }}>
                         <Grid container justify='center'>
-                            <PrivacyTooltip>
-                                <TextField
-                                    id='bd'
-                                    label='Your Birthday'
-                                    type='date'
-                                    variant='outlined'
-                                    inputProps={{ style: { fontSize: '20px' } }}
-                                    InputLabelProps={{ shrink: true }} />
-                            </PrivacyTooltip>
+                            <Grid item>
+                                <h3>
+                                    Share your birthday and I will show you
+                                    something cool!
+                                </h3>
+                            </Grid>
+                            <Grid item>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardDatePicker
+                                        autoOk
+                                        variant='inline'
+                                        inputVariant='outlined'
+                                        label='Your birthday'
+                                        format='dd/MM/yyyy'
+                                        InputAdornmentProps={{ position: "start" }}
+                                        value={birthday}
+                                        onChange={setBirthday} />
+                                </MuiPickersUtilsProvider>
+                            </Grid>
                         </Grid>
                     </form>
+                    {
+                        results.status === 200 ?
+                            <EventsPanel
+                                events={results.data.events.slice(0, 5)} />
+                            : null
+                    }
                 </Grid>
             </Grid>
         </div>
@@ -72,6 +113,7 @@ function AboutMe(props) {
 const mapStateToProps = (state) => {
     return {
         userName: state.userName,
+        bgclr: state.backgroundColor,
     }
 }
 
