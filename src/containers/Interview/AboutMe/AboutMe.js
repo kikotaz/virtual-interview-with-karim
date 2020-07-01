@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import './AboutMe.css';
 import EventsPanel from '../../../components/EventsPanel';
 import { Grid } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
@@ -8,6 +7,7 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/picker
 import axios from 'axios';
 import { isValid, getDate, getMonth, isToday } from 'date-fns';
 
+//This component for AboutMe page
 function AboutMe(props) {
 
     document.title = 'A little bit about me';
@@ -32,7 +32,7 @@ function AboutMe(props) {
                 }
                 fetchData();
             }
-        }, 2000)
+        }, 500)
     }, [birthday])
 
     return (
@@ -72,7 +72,7 @@ function AboutMe(props) {
                             to learn that one.
                         </li>
                         <li>
-                            I was born 06 October
+                            I was born 06 October.
                         </li>
                     </ul>
                     <form noValidate style={{ marginBottom: '10px' }}>
@@ -99,9 +99,19 @@ function AboutMe(props) {
                         </Grid>
                     </form>
                     {
-                        results.status === 200 ?
-                            <EventsPanel
-                                events={results.data.events.slice(0, 5)} />
+                        results.status === 200 ? (
+                            <div>
+                                <EventsPanel
+                                    events={results.data.events.slice(0, 5)}
+                                    date={results.data.date}
+                                    bgclr={props.bgclr} />
+                                <p
+                                    style={{ textAlign: 'center' }}>This information is using &nbsp;
+                                <a href='https://byabbe.se/on-this-day/'
+                                        target='_blank' rel='noopener noreferrer'>On this Day</a>
+                                        &nbsp; API</p>
+                            </div>
+                        )
                             : null
                     }
                 </Grid>
@@ -116,6 +126,5 @@ const mapStateToProps = (state) => {
         bgclr: state.backgroundColor,
     }
 }
-
 
 export default connect(mapStateToProps)(AboutMe);

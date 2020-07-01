@@ -3,8 +3,3 @@
     height: 100vh;
     overflow: auto;
 }
-
-.Welcome h3,h4{
-    color: #123C69;
-    font-family: 'Noto Sans JP', sans-serif;
-}

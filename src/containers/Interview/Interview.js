@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import './Interview.css';
 import Welcome from './Welcome/Welcome';
 import AboutMe from './AboutMe/AboutMe';
+import AboutWebsite from './AboutWebsite/AboutWebsite';
 import CustomTabs from '../../components/CustomTabs';
 import CustomTab from '../../components/CustomTab';
 
@@ -14,6 +14,7 @@ function Interview(props) {
         pages: [
             {path: '/', label: 'Welcome',},
             {path: '/about-me', label: 'About Me'},
+            {path: '/about-website', label: 'Why this website?'}
         ],
     }
 
@@ -38,6 +39,9 @@ function Interview(props) {
             </CustomTabs>
             {/*Configuring Switch to rerender exact page requested*/}
             <Switch>
+                <Route path='/about-website'>
+                    <AboutWebsite />
+                </Route>
                 <Route path='/about-me'>
                     <AboutMe />
                 </Route>

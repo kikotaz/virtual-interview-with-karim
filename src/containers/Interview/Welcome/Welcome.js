@@ -67,7 +67,7 @@ function Welcome(props) {
                     </h4>
 
                     {/*The color changing grid UI*/}
-                    <Grid classes={gridStyles} container spacing={2} justify='center' wrap={'nowrap'}>
+                    <Grid classes={gridStyles} container spacing={2} justify='center'>
                         {colors.map((color) => {
                             return (
                                 <Grid item key={color}>
