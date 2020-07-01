@@ -2,8 +2,9 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import MoodIcon from '@material-ui/icons/Mood';
 import TechPanel from '../../../components/TechPanel';
+import { connect } from 'react-redux';
 
-function AboutWebsite(){
+function AboutWebsite(props){
 
     document.title = 'Why this website?';
 
@@ -26,7 +27,7 @@ function AboutWebsite(){
                     <p>
                         To develop this website, I have used the following 
                     </p>
-                    <TechPanel />
+                    <TechPanel bgclr={props.bgclr}/>
                 </Grid>
             </Grid>
         </div>
@@ -34,4 +35,10 @@ function AboutWebsite(){
 
 }
 
-export default AboutWebsite;
+const mapStateToProps = (state) => {
+    return{
+        bgclr: state.backgroundColor,
+    }
+}
+
+export default connect(mapStateToProps)(AboutWebsite);

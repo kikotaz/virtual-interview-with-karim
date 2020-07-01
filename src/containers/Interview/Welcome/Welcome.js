@@ -21,7 +21,7 @@ const useGridStyles = makeStyles(({ breakpoints }) => ({
 //This component for Welcome page
 function Welcome(props) {
 
-    document.title = 'Welcome to my virtual interview';
+    document.title = 'Karim-Saleh.dev | Welcome';
 
     //Calling useGridStyles hook in top level
     const gridStyles = useGridStyles();
@@ -93,7 +93,7 @@ function Welcome(props) {
                                 id="nameField"
                                 label="Your Name"
                                 variant="outlined"
-                                inputProps={{ style: { fontSize: '20px' } }}
+                                inputProps={{ style: { fontSize: '1.3em' } }}
                                 value={userName}
                                 onChange={event => updateUserName(event.target.value)} />
                         </PrivacyTooltip>

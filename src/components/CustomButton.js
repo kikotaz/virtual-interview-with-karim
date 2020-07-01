@@ -5,9 +5,10 @@ import { withStyles } from '@material-ui/core/styles';
 const CustomButton = withStyles({
     root: {
       borderColor: "#AC3B61",
+      marginBottom: '2em',
     },
     label: {
-      fontSize: "18px",
+      fontSize: "1.3em",
       fontFamily: "'Noto Sans JP', sans-serif",
       color: "#123C69",
       textTransform: "none",

@@ -8,7 +8,7 @@ const CustomTab = withStyles({
         textTransform: 'none',
         color: '#123C69',
         fontFamily: 'Roboto, sans-serif',
-        fontSize: '1.2em',
+        fontSize: '1.1em',
         fontWeight: 'bold',
     },
 })((props) => <Tab disableRipple {...props}/>)

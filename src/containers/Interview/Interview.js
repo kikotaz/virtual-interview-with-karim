@@ -5,6 +5,7 @@ import AboutMe from './AboutMe/AboutMe';
 import AboutWebsite from './AboutWebsite/AboutWebsite';
 import CustomTabs from '../../components/CustomTabs';
 import CustomTab from '../../components/CustomTab';
+import Footer from '../../components/Footer';
 
 //This component will mainly contain navigation and routes
 function Interview(props) {
@@ -12,9 +13,9 @@ function Interview(props) {
     //Creating object of pages
     const navigation = {
         pages: [
-            {path: '/', label: 'Welcome',},
-            {path: '/about-me', label: 'About Me'},
-            {path: '/about-website', label: 'Why this website?'}
+            { path: '/', label: 'Welcome', },
+            { path: '/about-me', label: 'About Me' },
+            { path: '/about-website', label: 'Why this website?' }
         ],
     }
 
@@ -32,8 +33,8 @@ function Interview(props) {
                 centered
             >
                 {navigation.pages.map((page) => {
-                    return(
-                        <CustomTab value={page.path} label={page.label} key={page.path}/>
+                    return (
+                        <CustomTab value={page.path} label={page.label} key={page.path} />
                     )
                 })}
             </CustomTabs>
@@ -49,6 +50,7 @@ function Interview(props) {
                     <Welcome />
                 </Route>
             </Switch>
+            <Footer />
         </div>
     );
 }

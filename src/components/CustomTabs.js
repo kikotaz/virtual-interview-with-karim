@@ -4,6 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 //Customization for Material UI Tabs component
 const CustomTabs = withStyles({
+    root: {
+        flexGrow: '1',
+        flexWrap: 'wrap',
+    },
     indicator: {
         display: 'flex',
         justifyContent: 'center',
