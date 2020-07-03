@@ -6,6 +6,7 @@ import AboutWebsite from './AboutWebsite/AboutWebsite';
 import CustomTabs from '../../components/CustomTabs';
 import CustomTab from '../../components/CustomTab';
 import Footer from '../../components/Footer';
+import { Grid } from '@material-ui/core';
 
 //This component will mainly contain navigation and routes
 function Interview(props) {
@@ -26,7 +27,7 @@ function Interview(props) {
 
     return (
         //Website Navigation Tabs       
-        <div className='Interview'>
+        <Grid className='Interview'>
             <CustomTabs
                 value={props.history.location.pathname || '/'}
                 onChange={selectionHandler}
@@ -51,7 +52,7 @@ function Interview(props) {
                 </Route>
             </Switch>
             <Footer />
-        </div>
+        </Grid>
     );
 }
 

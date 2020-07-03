@@ -8,20 +8,23 @@ import AzureLogo from '../media/azure-icon.svg';
 import GithubActionsLogo from '../media/githubactions-icon.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useCardStyles = makeStyles(() => ({
+const useCardStyles = makeStyles(({breakpoints}) => ({
     grid: {
-        marginBottom: '10px',
+        [breakpoints.up('sm')]: {
+            justifyContent: 'center',
+        },
+        marginBottom: '2em',
     },
     card: {
-        height: '400px',
+        height: '100%',
         textAlign: 'center',
         borderColor: '#123C69',
     },
     content: ({ color }) => {
         return {
             backgroundColor: color,
-            height: '100%',
             color: '#123C69',
+            height: '100%',
         }
     },
     image: {
@@ -97,11 +100,12 @@ function TechPanel(props) {
     const cardStyles = useCardStyles({ color: props.bgclr });
 
     return (
-        <Grid container spacing={2} justify='center' className={cardStyles.grid}>
+        <Grid container spacing={2} justify='center' className={cardStyles.grid}
+        direction='row'>
             {
                 techs.details.map((tech, index) => {
                     return (
-                        <Grid item xs={6} key={index}>
+                        <Grid item key={index} direction='column' sm={12} md={6}>
                             <Card
                                 variant='outlined'
                                 className={cardStyles.card}>

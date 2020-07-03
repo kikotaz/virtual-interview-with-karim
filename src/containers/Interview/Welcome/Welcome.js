@@ -56,56 +56,54 @@ function Welcome(props) {
     const colors = ['#FFFFFF', '#EEE2DC', '#EDC7B7', '#BAB2B5']
 
     return (
-        <div className='Welcome'>
-            <Grid container justify='center'>
-                <Grid item xs={6}>
-                    <h3 style={{ marginBottom: "2em" }}>
-                        Woohooo, I am Karim and you have just reached my personal website.
+        <Grid container justify='center' className='Welcome'>
+            <Grid item xs={6}>
+                <h3 style={{ marginBottom: "2em" }}>
+                    Woohooo, I am Karim and you have just reached my personal website.
                     </h3>
-                    <h4 style={{ marginBottom: "2em" }}>
-                        For your convenience, you can choose a background color from the panel below
+                <h4 style={{ marginBottom: "2em" }}>
+                    For your convenience, you can choose a background color from the panel below
                     </h4>
 
-                    {/*The color changing grid UI*/}
-                    <Grid classes={gridStyles} container spacing={2} justify='center'>
-                        {colors.map((color) => {
-                            return (
-                                <Grid item key={color}>
-                                    <CustomCard
-                                        cardColor={color}
-                                        click={() => changeColorHandler(color)} />
-                                </Grid>
-                            )
-                        })}
-                    </Grid>
-
-                    <h4>
-                        It would be great also if you told me your name :-)
-                    </h4>
-
-                    <form
-                        noValidate
-                        autoComplete="off"
-                        style={{ marginBottom: '3em' }}
-                        onSubmit={submitHandler}>
-                        <PrivacyTooltip>
-                            <TextField
-                                id="nameField"
-                                label="Your Name"
-                                variant="outlined"
-                                inputProps={{ style: { fontSize: '1.3em' } }}
-                                value={userName}
-                                onChange={event => updateUserName(event.target.value)} />
-                        </PrivacyTooltip>
-                    </form>
-                    <CustomButton
-                        type="submit"
-                        variant="outlined"
-                        size="small"
-                        onClick={continueClickHandler}>Continue</CustomButton>
+                {/*The color changing grid UI*/}
+                <Grid classes={gridStyles} container spacing={2} justify='center'>
+                    {colors.map((color) => {
+                        return (
+                            <Grid item key={color}>
+                                <CustomCard
+                                    cardColor={color}
+                                    click={() => changeColorHandler(color)} />
+                            </Grid>
+                        )
+                    })}
                 </Grid>
+
+                <h4>
+                    It would be great also if you told me your name :-)
+                    </h4>
+
+                <form
+                    noValidate
+                    autoComplete="off"
+                    style={{ marginBottom: '3em' }}
+                    onSubmit={submitHandler}>
+                    <PrivacyTooltip>
+                        <TextField
+                            id="nameField"
+                            label="Your Name"
+                            variant="outlined"
+                            inputProps={{ style: { fontSize: '1.3em' } }}
+                            value={userName}
+                            onChange={event => updateUserName(event.target.value)} />
+                    </PrivacyTooltip>
+                </form>
+                <CustomButton
+                    type="submit"
+                    variant="outlined"
+                    size="small"
+                    onClick={continueClickHandler}>Continue</CustomButton>
             </Grid>
-        </div>
+        </Grid>
     )
 }
 
