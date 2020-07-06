@@ -27,7 +27,7 @@ function Interview(props) {
 
     return (
         //Website Navigation Tabs       
-        <Grid className='Interview'>
+        <Grid className='Interview' style={{height: '100%'}}>
             <CustomTabs
                 value={props.history.location.pathname || '/'}
                 onChange={selectionHandler}
